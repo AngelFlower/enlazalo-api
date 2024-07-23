@@ -36,6 +36,9 @@ class UrlRepository:
             url.id,
         )
 
+    def get_by_short_url(self, short_url: str) -> Optional[Url]:
+        return self.db.query(Url).filter_by(short_url=short_url).first()
+
     def create(self, url: Url) -> Url:
         self.db.add(url)
         self.db.commit()
